@@ -7,5 +7,11 @@ void mouseReleased() {
     pauseClicks();
   } else if (mode == GAMEOVER) {
     gameoverClicks();
-  } 
+  } else if (mode == OPTIONS) {
+    optionsClicks();
+  } else if (mode == HELP) {
+    helpClicks();
+  } else if (mode == SHOP) {
+    shopClicks();
+  }
 }

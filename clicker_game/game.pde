@@ -2,8 +2,9 @@ void game() {
   //visuals
   background(0, 255, 0);
   fill(0);
-  text("Score: " + score, width/2, 50);
-  text("Lives: " + lives, width/2, 100);
+  text("Lives: " + lives, width/2, 50);
+  text("Score: " + score, width/2, 100);
+  text("HighScore: " + highScore, width/2, 150);
 
   //pause button
   stroke(0);
@@ -11,8 +12,8 @@ void game() {
   circle(100, 100, 100);
 
   //display target
+  circularTactile(x, y, d);
   fill(255);
-  stroke(0);
   strokeWeight(5);
   circle(x, y, d);
 
@@ -30,11 +31,16 @@ void game() {
 }
 
 void gameClicks() {
-  if (dist(x, y, mouseX, mouseY) < d/2) {
+  if (dist(x, y, mouseX, mouseY) <= d/2) {
     score = score + 1;
+    vx = vx * 1.1;
+    vy = vy * 1.1;
     coin.rewind();
     coin.play();
-  } else if (dist(mouseX, mouseY, 100, 100) < 50) {
+  if (dist(x, y, mouseX, mouseY) < d/2 && score > highScore) {
+   highScore = highScore + 1; 
+  }
+  } else if (dist(mouseX, mouseY, 100, 100) <= 50) {
     mode = PAUSE;
   } else {
     lives = lives - 1;
